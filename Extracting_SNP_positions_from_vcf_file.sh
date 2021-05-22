@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l select=1:ncpus=1:mem=5G
 #PBS -l walltime=28:59:00
-#PBS -A PotatoTool-BI
+#PBS -A youtprojectname
 
 
 cd $PBS_O_WORKD
