@@ -4,7 +4,7 @@
 #PBS -A youtprojectname
 
 
-cd $PBS_O_WORKD
+cd $PBS_O_WORKDIR
 
 for i in $(ls *.vcf)
 do
