@@ -11,6 +11,6 @@
 cd $PBS_O_WORKDIR
 
 for i in $(ls *.txt)
-:xq:xdo 
+do
 awk '(NR > 15)' ${i} > ${i}_p.txt #skipping 15 rows of your file
 done
