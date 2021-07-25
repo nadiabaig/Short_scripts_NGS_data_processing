@@ -14,3 +14,5 @@ for i in $(ls *.txt)
 do
 awk '(NR > 15)' ${i} > ${i}_p.txt #skipping 15 rows of your file
 done
+##counting no. of columns in your file
+cat 06_GT_tags.txt | awk '{ print NF}' >l
