@@ -20,3 +20,23 @@ plot(chr1$Position,chr1$Depth)
 ##get a cleaner view of the graph
 library(lattice, pos=10) 
 xyplot(Depth ~ Position, type="p", pch=16, auto.key=list(border=TRUE), par.settings=simpleTheme(pch=16), scales=list(x=list(relation='same'), y=list(relation='same')), data=chr1)
+
+##checking depth and other statitistics of your vcf file
+
+##plotting vcf stats
+library('vcfR')
+vcf=read.vcfR('Filtered_1mb.vcf',verbose = FALSE)
+dna= ape::read.dna('Chr01_1mb.fa',format ="fasta")
+
+##create chromR object
+chrom<- create.chromR(name="Chr01", vcf=vcf, seq=dna, verbose=TRUE)
+#visualizing chrom object
+chrom <- proc.chromR(chrom, verbose=FALSE, win.size=1e0)
+chromoqc(chrom, dp.alpha = 22)
+
+###plot only depth
+dp <- extract.gt(vcf, element = "DP", as.numeric=TRUE)
+##base plot
+
+boxplot(dp, col=2:8, las=3)
+title(ylab = "Depth (DP)")
