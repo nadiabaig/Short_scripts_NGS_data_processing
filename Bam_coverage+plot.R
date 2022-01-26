@@ -1,6 +1,15 @@
 #getting per base coverage of a bam file
+##tot=$(samtools view -H possorted_bam.bam | grep -P '^@SQ' | cut -f 3 -d ':' | awk '{sum+=$1} END {print sum}')
+
 #samtools depth possorted_bam.bam > all.cov
 #awk '$1 == "Chr01" {print $0}' 1.cov > Chr1.cov  #for chr1
+
+##checking total coverage
+#sum=$(awk '{sum+=$3} END {print sum}' 1.cov ); echo $sum
+
+##avg coverage
+#avg=$(echo "$sum/$tot" | bc -l)
+
 ##PLotting in R
 library(reshape)
 setwd('/home/baign/Desktop')
