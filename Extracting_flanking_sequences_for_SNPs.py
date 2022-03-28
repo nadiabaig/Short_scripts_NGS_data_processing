@@ -1,4 +1,7 @@
 
+##Author: Nadia Baig #################################################
+##Institute of Quantitative genetics and genomics for plants-QGGP   ##
+######################################################################
 from __future__ import print_function
 import pysam
 
