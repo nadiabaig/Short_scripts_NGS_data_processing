@@ -1,5 +1,7 @@
 ####Filtering on position per chromosome ####
-
+##Author: Nadia Baig #################################################
+##Institute of Quantitative genetics and genomics for plants-QGGP   ##
+######################################################################
 import vcf     # pip3 install --user  PyVCF
 
 
