@@ -1,4 +1,7 @@
 ##filtering monomorphic
+##Author: Nadia Baig #################################################
+##Institute of Quantitative genetics and genomics for plants-QGGP   ##
+######################################################################
 import pandas as pd
 import statistics
 import math
