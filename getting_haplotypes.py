@@ -6,9 +6,9 @@
 def extract_haplotypes(genotype):
     haplotypes = set()
     alleles = genotype.split('/')
-    for hap1 in alleles:
-        for hap2 in alleles:
-            haplotypes.add(hap1 + '.' + hap2)
+    for hap1 in alleles[0]:
+        for hap2 in alleles[1]:
+            haplotypes.add(hap1 + hap2)
     return haplotypes
 
 vcf_data = [
@@ -31,7 +31,3 @@ with open(output_file, "w") as f:
         f.write(f"{genotype}: {', '.join(haplotypes)}\n")
 
 print(f"Haplotypes written to {output_file}")
-
-
-
-
