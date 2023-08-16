@@ -26,6 +26,7 @@ for entry in vcf_data:
         haplotypes_by_genotype[f"{chrom}_{pos}_{i + 1}"] = haplotypes
 
 output_file = "haplotypes.txt"
+
 with open(output_file, "w") as f:
     for genotype, haplotypes in haplotypes_by_genotype.items():
         f.write(f"{genotype}: {', '.join(haplotypes)}\n")
