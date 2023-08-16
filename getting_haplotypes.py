@@ -3,32 +3,21 @@
  4   78  GG  AT       TTGG          .          .          .          .   
  4  167   A   T       ATAT       TATA       ATAT       ATAT       ATAT
 
-def extract_haplotypes(genotype):
-    haplotypes = set()
-    alleles = genotype.split('/')
-    for hap1 in alleles[0]:
-        for hap2 in alleles[1]:
-            haplotypes.add(hap1 + hap2)
-    return haplotypes
+import pandas as pd
 
-vcf_data = [
-    ("4", 56, "A", "G", "AGAG", "AGAG", "AGAG", "AGAG", "AGAG"),
-    ("4", 78, "GG", "AT", "TTGG", ".", ".", ".", "."),
-    ("4", 167, "A", "T", "ATAT", "TATA", "ATAT", "ATAT", "ATAT")
-]
+# Example DataFrame
+data = {'chr': ['chr1', 'chr2'],
+        'pos': [345, 456],
+        '002': ['AAAT', 'TTAA']}
 
-haplotypes_by_genotype = {}
+df = pd.DataFrame(data)
 
-for entry in vcf_data:
-    chrom, pos, ref, alt, *genotypes = entry
-    for i, genotype in enumerate(genotypes):
-        haplotypes = extract_haplotypes(genotype)
-        haplotypes_by_genotype[f"{chrom}_{pos}_{i + 1}"] = haplotypes
+# Initialize an empty list to store the results
+result_list = []
 
-output_file = "haplotypes.txt"
+# Iterate through the DataFrame rows
+for index, row in df.iterrows():
+    values = [row[column][index] if len(row[column]) > index else '' for column in df.columns[2:]]
+    result_list.append(''.join(values))
 
-with open(output_file, "w") as f:
-    for genotype, haplotypes in haplotypes_by_genotype.items():
-        f.write(f"{genotype}: {', '.join(haplotypes)}\n")
-
-print(f"Haplotypes written to {output_file}")
+print(result_list)
