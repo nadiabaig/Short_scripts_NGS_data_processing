@@ -8,19 +8,26 @@ import pandas as pd
 # Example DataFrame
 data = {'chr': ['chr1', 'chr2'],
         'pos': [345, 456],
-        '002': ['AAAT', 'TTAA']}
+        '003': ['GGGT', 'CCCA'],
+        '004': ['CCGT', 'AAAA']}
 
 df = pd.DataFrame(data)
 
-# Initialize an empty list to store the results
-result_list = []
+# Initialize an empty dictionary to store the results for each column
+result_dict = {}
 
-# Get the maximum length of the strings
-max_length = max(df['002'].apply(len))
+# Get the maximum length of the strings in all specified columns
+max_length = max(max(df[col].apply(len)) for col in df.columns[2:])
 
-# Iterate through the DataFrame rows
-for i in range(max_length):
-    values = [row['002'][i] if len(row['002']) > i else '' for index, row in df.iterrows()]
-    result_list.append(''.join(values))
+# Iterate through the specified columns
+for col in df.columns[2:]:
+    result_list = []
 
-print(result_list)
+    # Iterate through the DataFrame rows
+    for i in range(max_length):
+        values = [row[col][i] if len(row[col]) > i else '' for index, row in df.iterrows()]
+        result_list.append(''.join(values))
+
+    result_dict[col] = result_list
+
+print(result_dict)
