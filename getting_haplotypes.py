@@ -15,9 +15,12 @@ df = pd.DataFrame(data)
 # Initialize an empty list to store the results
 result_list = []
 
+# Get the maximum length of the strings
+max_length = max(df['002'].apply(len))
+
 # Iterate through the DataFrame rows
-for index, row in df.iterrows():
-    values = [row[column][index] if len(row[column]) > index else '' for column in df.columns[2:]]
+for i in range(max_length):
+    values = [row['002'][i] if len(row['002']) > i else '' for index, row in df.iterrows()]
     result_list.append(''.join(values))
 
 print(result_list)
